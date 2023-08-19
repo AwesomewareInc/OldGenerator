@@ -9,7 +9,8 @@ import java.util.EnumSet;
 public final class BlockConstants {
 
     /*
-     * In order to avoid map lookups for converting from Material->NMS IBlockData we cache the block datas
+     * In order to avoid map lookups for converting from Material->NMS IBlockData we
+     * cache the block datas
      * here.
      */
 
@@ -21,7 +22,7 @@ public final class BlockConstants {
     public static final BlockData GRASS_BLOCK = Material.GRASS_BLOCK.createBlockData();
     public static final BlockData SNOWY_GRASS_BLOCK = Material.GRASS_BLOCK.createBlockData();
     static {
-        ((Snowable)SNOWY_GRASS_BLOCK).setSnowy(true);
+        ((Snowable) SNOWY_GRASS_BLOCK).setSnowy(true);
     }
     public static final BlockData BEDROCK = Material.BEDROCK.createBlockData();
     public static final BlockData GRAVEL = Material.GRAVEL.createBlockData();
@@ -43,6 +44,7 @@ public final class BlockConstants {
     public static final BlockData SPRUCE_LEAVES = Material.SPRUCE_LEAVES.createBlockData();
     public static final BlockData SPRUCE_LOG = Material.SPRUCE_LOG.createBlockData();
     public static final BlockData COAL_ORE = Material.COAL_ORE.createBlockData();
+    public static final BlockData COPPER_ORE = Material.COPPER_ORE.createBlockData();
     public static final BlockData IRON_ORE = Material.IRON_ORE.createBlockData();
     public static final BlockData GOLD_ORE = Material.GOLD_ORE.createBlockData();
     public static final BlockData REDSTONE_ORE = Material.REDSTONE_ORE.createBlockData();
@@ -60,6 +62,8 @@ public final class BlockConstants {
     public static final BlockData GLOWSTONE = Material.GLOWSTONE.createBlockData();
     public static final BlockData NETHERRACK = Material.NETHERRACK.createBlockData();
     public static final BlockData SOUL_SAND = Material.SOUL_SAND.createBlockData();
+
+    public static final BlockData DEEPSLATE = Material.DEEPSLATE.createBlockData();
 
     public static final EnumSet<Material> AIRS = EnumSet.noneOf(Material.class);
     static {

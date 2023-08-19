@@ -128,9 +128,12 @@ public class ChunkProviderHell173 implements OldChunkGenerator {
         byte b0 = 64;
         double d0 = 0.03125D;
 
-        this.soulSandNoise = this.sandAndGravelNoiseGenerator.generateNoise(this.soulSandNoise, (double) (chunkX * 16), (double) (chunkZ * 16), 0.0D, 16, 16, 1, d0, d0, 1.0D);
-        this.gravelNoise = this.sandAndGravelNoiseGenerator.generateNoise(this.gravelNoise, (double) (chunkX * 16), 109.0134D, (double) (chunkZ * 16), 16, 1, 16, d0, 1.0D, d0);
-        this.heightNoise = this.heightNoiseGenerator.generateNoise(this.heightNoise, (double) (chunkX * 16), (double) (chunkZ * 16), 0.0D, 16, 16, 1, d0 * 2.0D, d0 * 2.0D, d0 * 2.0D);
+        this.soulSandNoise = this.sandAndGravelNoiseGenerator.generateNoise(this.soulSandNoise, (double) (chunkX * 16),
+                (double) (chunkZ * 16), 0.0D, 16, 16, 1, d0, d0, 1.0D);
+        this.gravelNoise = this.sandAndGravelNoiseGenerator.generateNoise(this.gravelNoise, (double) (chunkX * 16),
+                109.0134D, (double) (chunkZ * 16), 16, 1, 16, d0, 1.0D, d0);
+        this.heightNoise = this.heightNoiseGenerator.generateNoise(this.heightNoise, (double) (chunkX * 16),
+                (double) (chunkZ * 16), 0.0D, 16, 16, 1, d0 * 2.0D, d0 * 2.0D, d0 * 2.0D);
 
         for (int k = 0; k < 16; ++k) {
             for (int l = 0; l < 16; ++l) {
@@ -149,7 +152,8 @@ public class ChunkProviderHell173 implements OldChunkGenerator {
                     } else if (k1 <= 0 + this.random.nextInt(5)) {
                         LegacyUtil173.setBlockData(chunkData, l1, BlockConstants.BEDROCK);
                     } else {
-                        Material b3 = LegacyUtil173.getType(chunkData, l1);;
+                        Material b3 = LegacyUtil173.getType(chunkData, l1);
+                        ;
 
                         if (BlockConstants.isAir(b3)) {
                             j1 = -1;
@@ -199,7 +203,8 @@ public class ChunkProviderHell173 implements OldChunkGenerator {
         }
     }
 
-    private double[] generateTerrainNoise(double[] into, int startX, int startY, int startZ, int lenX, int lenY, int lenZ) {
+    private double[] generateTerrainNoise(double[] into, int startX, int startY, int startZ, int lenX, int lenY,
+            int lenZ) {
         if (into == null) {
             into = new double[lenX * lenY * lenZ];
         }
@@ -207,11 +212,16 @@ public class ChunkProviderHell173 implements OldChunkGenerator {
         double d0 = 684.412D;
         double d1 = 2053.236D;
 
-        this.terrainNoise4 = this.terrainNoise4Generator.generateNoise(this.terrainNoise4, (double) startX, (double) startY, (double) startZ, lenX, 1, lenZ, 1.0D, 0.0D, 1.0D);
-        this.terrainNoise5 = this.terrainNoise5Generator.generateNoise(this.terrainNoise5, (double) startX, (double) startY, (double) startZ, lenX, 1, lenZ, 100.0D, 0.0D, 100.0D);
-        this.terrainNoise1 = this.terrainNoise1Generator.generateNoise(this.terrainNoise1, (double) startX, (double) startY, (double) startZ, lenX, lenY, lenZ, d0 / 80.0D, d1 / 60.0D, d0 / 80.0D);
-        this.terrainNoise2 = this.terrainNoise2Generator.generateNoise(this.terrainNoise2, (double) startX, (double) startY, (double) startZ, lenX, lenY, lenZ, d0, d1, d0);
-        this.terrainNoise3 = this.terrainNoise3Generator.generateNoise(this.terrainNoise3, (double) startX, (double) startY, (double) startZ, lenX, lenY, lenZ, d0, d1, d0);
+        this.terrainNoise4 = this.terrainNoise4Generator.generateNoise(this.terrainNoise4, (double) startX,
+                (double) startY, (double) startZ, lenX, 1, lenZ, 1.0D, 0.0D, 1.0D);
+        this.terrainNoise5 = this.terrainNoise5Generator.generateNoise(this.terrainNoise5, (double) startX,
+                (double) startY, (double) startZ, lenX, 1, lenZ, 100.0D, 0.0D, 100.0D);
+        this.terrainNoise1 = this.terrainNoise1Generator.generateNoise(this.terrainNoise1, (double) startX,
+                (double) startY, (double) startZ, lenX, lenY, lenZ, d0 / 80.0D, d1 / 60.0D, d0 / 80.0D);
+        this.terrainNoise2 = this.terrainNoise2Generator.generateNoise(this.terrainNoise2, (double) startX,
+                (double) startY, (double) startZ, lenX, lenY, lenZ, d0, d1, d0);
+        this.terrainNoise3 = this.terrainNoise3Generator.generateNoise(this.terrainNoise3, (double) startX,
+                (double) startY, (double) startZ, lenX, lenY, lenZ, d0, d1, d0);
         int k1 = 0;
         int l1 = 0;
         double[] adouble1 = new double[lenY];
@@ -315,8 +325,9 @@ public class ChunkProviderHell173 implements OldChunkGenerator {
     }
 
     @Override
-    public void generateUnpopulatedChunkData(ChunkGenerator.ChunkData chunkData, int chunkX, int chunkZ, ChunkGenerator.BiomeGrid biome) {
-        this.random.setSeed((long)chunkX * 341873128712L + (long)chunkZ * 132897987541L);
+    public void generateUnpopulatedChunkData(ChunkGenerator.ChunkData chunkData, int chunkX, int chunkZ,
+            ChunkGenerator.BiomeGrid biome) {
+        this.random.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
 
         this.generateBareTerrain(chunkX, chunkZ, chunkData);
         this.generateBiomeTerrain(chunkX, chunkZ, chunkData);
@@ -339,12 +350,16 @@ public class ChunkProviderHell173 implements OldChunkGenerator {
         int k1;
         int l1;
 
-        // Note: Beta 173 nether generation never actually sets the random seed when generating!
-        // This code is added by us so that nether generation is consistent between runs.
-        // We can never truly replicate populator randomness thanks to this bug, but at least we can
+        // Note: Beta 173 nether generation never actually sets the random seed when
+        // generating!
+        // This code is added by us so that nether generation is consistent between
+        // runs.
+        // We can never truly replicate populator randomness thanks to this bug, but at
+        // least we can
         // make it consistent now.
         this.random.setSeed(this.world.getSeed());
-        this.random.setSeed((long) chunkX * (this.random.nextLong() / 2L * 2L + 1L) + (long) chunkZ * (this.random.nextLong() / 2L * 2L + 1L) ^ this.world.getSeed());
+        this.random.setSeed((long) chunkX * (this.random.nextLong() / 2L * 2L + 1L)
+                + (long) chunkZ * (this.random.nextLong() / 2L * 2L + 1L) ^ this.world.getSeed());
 
         for (i1 = 0; i1 < 8; ++i1) {
             j1 = k + this.random.nextInt(16) + 8;

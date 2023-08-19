@@ -13,9 +13,11 @@ public final class LegacyUtil173 {
 
     public static final int WORLD_HEIGHT = 128;
 
-    // Source code for b173 server can be found here: https://github.com/Bukkit/mc-dev/tree/1a792ed860ebe2c6d4c40c52f3bc7b9e0789ca23
+    // Source code for b173 server can be found here:
+    // https://github.com/Bukkit/mc-dev/tree/1a792ed860ebe2c6d4c40c52f3bc7b9e0789ca23
 
-    // NOTE: The following methods are supposed to mirror beta 1.7.3 behaviour! They are not guaranteed to mirror
+    // NOTE: The following methods are supposed to mirror beta 1.7.3 behaviour! They
+    // are not guaranteed to mirror
     // NEW behaviour.
 
     private static final EnumSet<Material> REPLACABLE_MATERIALS = EnumSet.noneOf(Material.class);
@@ -129,21 +131,20 @@ public final class LegacyUtil173 {
         return (Material_F.contains(material) ? false : Material_isSolid(material)) && Block_b(material);
     }
 
-
     private static final EnumMap<Material, Integer> BlockFire_a = new EnumMap<>(Material.class);
     private static final EnumMap<Material, Integer> BlockFire_b = new EnumMap<>(Material.class);
 
     static {
         /*
-        this.a(Block.WOOD.id, 5, 20);
-        this.a(Block.FENCE.id, 5, 20);
-        this.a(Block.WOOD_STAIRS.id, 5, 20);
-        this.a(Block.LOG.id, 5, 5);
-        this.a(Block.LEAVES.id, 30, 60);
-        this.a(Block.BOOKSHELF.id, 30, 20);
-        this.a(Block.TNT.id, 15, 100);
-        this.a(Block.LONG_GRASS.id, 60, 100);
-        this.a(Block.WOOL.id, 30, 60);
+         * this.a(Block.WOOD.id, 5, 20);
+         * this.a(Block.FENCE.id, 5, 20);
+         * this.a(Block.WOOD_STAIRS.id, 5, 20);
+         * this.a(Block.LOG.id, 5, 5);
+         * this.a(Block.LEAVES.id, 30, 60);
+         * this.a(Block.BOOKSHELF.id, 30, 20);
+         * this.a(Block.TNT.id, 15, 100);
+         * this.a(Block.LONG_GRASS.id, 60, 100);
+         * this.a(Block.WOOL.id, 30, 60);
          */
         for (final Material wood : BlockConstants.WOODS) {
             BlockFire_a.put(wood, 5);
@@ -186,7 +187,6 @@ public final class LegacyUtil173 {
             BlockFire_b.put(wool, 60);
         }
     }
-
 
     public static boolean BlockFire_b(final BlockAccess world, final int x, final int y, final int z) {
         return BlockFire_a.getOrDefault(world.getType(x, y, z), Integer.valueOf(-1)).intValue() > 0;
@@ -237,12 +237,13 @@ public final class LegacyUtil173 {
         NOT_Block_a.add(Material.GLASS);
         NOT_Block_a.add(Material.ICE);
         NOT_Block_a.add(Material.NETHER_PORTAL);
-        //NOT_Block_a.addAll(BlockConstants.LEAVES); // overrides but always is true
+        // NOT_Block_a.addAll(BlockConstants.LEAVES); // overrides but always is true
         NOT_Block_a.add(Material.SPAWNER);
     }
 
     public static boolean Block_o(final Material material) {
-        // As there is no block with air, mojang opted to use a boolean array to avoid NPE... And to decide that air should return false
+        // As there is no block with air, mojang opted to use a boolean array to avoid
+        // NPE... And to decide that air should return false
         return !BlockConstants.isAir(material) && Block_a(material);
     }
 
@@ -258,7 +259,11 @@ public final class LegacyUtil173 {
     }
 
     public static boolean BlockChest_g(final BlockAccess world, final int x, final int y, final int z) {
-        return world.getType(x, y, z) != Material.CHEST ? false : (world.getType(x - 1, y, z) == Material.CHEST ? true : (world.getType(x + 1, y, z) == Material.CHEST ? true : (world.getType(x, y, z - 1) == Material.CHEST ? true : world.getType(x, y, z + 1) == Material.CHEST)));
+        return world.getType(x, y, z) != Material.CHEST ? false
+                : (world.getType(x - 1, y, z) == Material.CHEST ? true
+                        : (world.getType(x + 1, y, z) == Material.CHEST ? true
+                                : (world.getType(x, y, z - 1) == Material.CHEST ? true
+                                        : world.getType(x, y, z + 1) == Material.CHEST)));
     }
 
     public static boolean BlockTorch_g(final BlockAccess world, final int x, final int y, final int z) {
@@ -279,9 +284,12 @@ public final class LegacyUtil173 {
         return param == Material.GRASS_BLOCK || param == Material.DIRT || param == Material.FARMLAND;
     }
 
-    public static boolean BlockFlower_f(final BlockAccess world, final int x, final int y, final int z, final Material type) {
+    public static boolean BlockFlower_f(final BlockAccess world, final int x, final int y, final int z,
+            final Material type) {
         if (type == Material.RED_MUSHROOM || type == Material.BROWN_MUSHROOM) {
-            return y >= 0 && y < WORLD_HEIGHT ? world.getLightLevel(x, y, z) < 13 && BlockFlower_c(type, world.getType(x, y - 1, z)) : false;
+            return y >= 0 && y < WORLD_HEIGHT
+                    ? world.getLightLevel(x, y, z) < 13 && BlockFlower_c(type, world.getType(x, y - 1, z))
+                    : false;
         }
 
         // default
@@ -306,15 +314,19 @@ public final class LegacyUtil173 {
         }
     }
 
-    public static boolean Block_canPlace(final BlockAccess world, final int x, final int y, final int z, final Material material) {
+    public static boolean Block_canPlace(final BlockAccess world, final int x, final int y, final int z,
+            final Material material) {
         if (BlockConstants.isButton(material)) {
-            return World_e(world, x - 1, y, z) ? true : (World_e(world, x + 1, y, z) ? true : (World_e(world, x, y, z - 1) ? true : World_e(world, x, y, z + 1)));
+            return World_e(world, x - 1, y, z) ? true
+                    : (World_e(world, x + 1, y, z) ? true
+                            : (World_e(world, x, y, z - 1) ? true : World_e(world, x, y, z + 1)));
         }
         if (material == Material.CACTUS) {
             return !Material_isReplacable(world.getType(x, y, z)) ? false : BlockCactus_f(world, x, y, z);
         }
         if (material == Material.CAKE) {
-            return !Material_isReplacable(world.getType(x, y, z)) ? false : Material_isBuildable(world.getType(x, y - 1, z));
+            return !Material_isReplacable(world.getType(x, y, z)) ? false
+                    : Material_isBuildable(world.getType(x, y - 1, z));
         }
         if (material == Material.CHEST) {
             int l = 0;
@@ -335,20 +347,30 @@ public final class LegacyUtil173 {
                 ++l;
             }
 
-            return l > 1 ? false : (BlockChest_g(world, x - 1, y, z) ? false : (BlockChest_g(world, x + 1, y, z) ? false : (BlockChest_g(world, x, y, z - 1) ? false : !BlockChest_g(world, x, y, z + 1))));
+            return l > 1 ? false
+                    : (BlockChest_g(world, x - 1, y, z) ? false
+                            : (BlockChest_g(world, x + 1, y, z) ? false
+                                    : (BlockChest_g(world, x, y, z - 1) ? false : !BlockChest_g(world, x, y, z + 1))));
         }
         if (material == Material.REPEATER) {
             return !World_e(world, x, y - 1, z) ? false : Material_isReplacable(world.getType(x, y, z));
         }
         if (BlockConstants.isDoor(material)) {
-            return y >= (WORLD_HEIGHT - 1) ? false : World_e(world, x, y - 1, z) && Material_isReplacable(world.getType(x, y, z)) && Material_isReplacable(world.getType(x, y + 1, z));
+            return y >= (WORLD_HEIGHT - 1) ? false
+                    : World_e(world, x, y - 1, z) && Material_isReplacable(world.getType(x, y, z))
+                            && Material_isReplacable(world.getType(x, y + 1, z));
         }
         if (material == Material.FIRE) {
             if (World_e(world, x, y - 1, z)) {
                 return true;
             }
 
-            return BlockFire_b(world, x + 1, y, z) ? true : (BlockFire_b(world, x - 1, y, z) ? true : (BlockFire_b(world, x, y - 1, z) ? true : (BlockFire_b(world, x, y + 1, z) ? true : (BlockFire_b(world, x, y, z - 1) ? true : BlockFire_b(world, x, y, z + 1)))));
+            return BlockFire_b(world, x + 1, y, z) ? true
+                    : (BlockFire_b(world, x - 1, y, z) ? true
+                            : (BlockFire_b(world, x, y - 1, z) ? true
+                                    : (BlockFire_b(world, x, y + 1, z) ? true
+                                            : (BlockFire_b(world, x, y, z - 1) ? true
+                                                    : BlockFire_b(world, x, y, z + 1)))));
         }
         if (BlockConstants.isFlower(material)) {
             if (!Material_isReplacable(world.getType(x, y, z))) {
@@ -358,10 +380,15 @@ public final class LegacyUtil173 {
             return below == Material.GRASS_BLOCK || below == Material.DIRT || below == Material.FARMLAND;
         }
         if (material == Material.LADDER) {
-            return World_e(world, x - 1, y, z) ? true : (World_e(world, x + 1, y, z) ? true : (World_e(world, x, y, z - 1) ? true : World_e(world, x, y, z + 1)));
+            return World_e(world, x - 1, y, z) ? true
+                    : (World_e(world, x + 1, y, z) ? true
+                            : (World_e(world, x, y, z - 1) ? true : World_e(world, x, y, z + 1)));
         }
         if (material == Material.LEVER) {
-            return World_e(world, x - 1, y, z) ? true : (World_e(world, x + 1, y, z) ? true : (World_e(world, x, y, z - 1) ? true : (World_e(world, x, y, z + 1) ? true : World_e(world, x, y - 1, z))));
+            return World_e(world, x - 1, y, z) ? true
+                    : (World_e(world, x + 1, y, z) ? true
+                            : (World_e(world, x, y, z - 1) ? true
+                                    : (World_e(world, x, y, z + 1) ? true : World_e(world, x, y - 1, z))));
         }
         // locked_chest no longer exists.
         if (BlockConstants.isRail(material)) {
@@ -382,29 +409,41 @@ public final class LegacyUtil173 {
         if (material == Material.SUGAR_CANE) {
             final Material below = world.getType(x, y - 1, z);
 
-            return below == Material.SUGAR_CANE ? true : (below != Material.GRASS_BLOCK && below != Material.DIRT ? false : (world.getType(x - 1, y - 1, z) == Material.WATER ? true : (world.getType(x + 1, y - 1, z) == Material.WATER ? true : (world.getType(x, y - 1, z - 1) == Material.WATER ? true : world.getType(x, y - 1, z + 1) == Material.WATER))));
+            return below == Material.SUGAR_CANE ? true
+                    : (below != Material.GRASS_BLOCK && below != Material.DIRT ? false
+                            : (world.getType(x - 1, y - 1, z) == Material.WATER ? true
+                                    : (world.getType(x + 1, y - 1, z) == Material.WATER ? true
+                                            : (world.getType(x, y - 1, z - 1) == Material.WATER ? true
+                                                    : world.getType(x, y - 1, z + 1) == Material.WATER))));
         }
         if (material == Material.SNOW) { // TODO SNOW_BLOCK?
             final Material below = world.getType(x, y - 1, z);
             return !BlockConstants.isAir(below) && Block_a(below) ? Material_isSolid(below) : false;
         }
-        // stairs maps to either Material.WOOD or Material.COBBLESTONE, depending on the type of the stairs.
-        // both do not override canPlace, so they aren't checked here (as they enter the default case)
+        // stairs maps to either Material.WOOD or Material.COBBLESTONE, depending on the
+        // type of the stairs.
+        // both do not override canPlace, so they aren't checked here (as they enter the
+        // default case)
         if (BlockConstants.isGenericTorch(material)) {
-            return World_e(world, x - 1, y, z) ? true : (World_e(world, x + 1, y, z) ? true : (World_e(world, x, y, z - 1) ? true : (World_e(world, x, y, z + 1) ? true : BlockTorch_g(world, x, y - 1, z))));
+            return World_e(world, x - 1, y, z) ? true
+                    : (World_e(world, x + 1, y, z) ? true
+                            : (World_e(world, x, y, z - 1) ? true
+                                    : (World_e(world, x, y, z + 1) ? true : BlockTorch_g(world, x, y - 1, z))));
         }
-
 
         // default
         return Material_isReplacable(world.getType(x, y, z));
     }
 
     /*
-     * For reference, Chunks used to store block data as a single byte in a giant array. Indexing was done as follows:
-     * index = x << 11 | z << 7 | y where x and z are in [0, 15] and y is in [0, 127]
+     * For reference, Chunks used to store block data as a single byte in a giant
+     * array. Indexing was done as follows:
+     * index = x << 11 | z << 7 | y where x and z are in [0, 15] and y is in [0,
+     * 127]
      */
 
-    // helper functions to easily convert code using the old byte[] access for chunk data
+    // helper functions to easily convert code using the old byte[] access for chunk
+    // data
 
     public static Material getType(final ChunkGenerator.ChunkData chunkData, final int index) {
         return chunkData.getType(index >>> 11, index & 127, (index >>> 7) & 15);
@@ -414,12 +453,25 @@ public final class LegacyUtil173 {
         return chunkData.getBlockData(index >>> 11, index & 127, (index >>> 7) & 15);
     }
 
-    public static void setBlockData(final ChunkGenerator.ChunkData chunkData, final int index, final BlockData blockData) {
-        chunkData.setBlock(index >>> 11, index & 127, (index >>> 7) & 15, blockData);
+    @Deprecated
+    public static void setBlockData(final ChunkGenerator.ChunkData chunkData, final int index,
+            final BlockData blockData) {
+        setBlockData(chunkData, index, blockData, false);
     }
 
-    // due to very questionable decisions by spigot, the getHighestBlockYAt function was changed to return
-    // the actual block y, after returning the block y + 1 for about 9 years. Move the correction here just in case
+    public static void setBlockData(final ChunkGenerator.ChunkData chunkData, final int index,
+            final BlockData blockData, boolean negative) {
+        int mod = 1;
+        if (negative) {
+            mod = -1;
+        }
+        chunkData.setBlock(index >>> 11, (index & 127) * mod, (index >>> 7) & 15, blockData);
+    }
+
+    // due to very questionable decisions by spigot, the getHighestBlockYAt function
+    // was changed to return
+    // the actual block y, after returning the block y + 1 for about 9 years. Move
+    // the correction here just in case
     // spigot breaks it again, so we can account for it easily.
     public static int getHighestBlockYAt(final World world, final int x, final int z) {
         return world.getHighestBlockYAt(x, z) + 1;

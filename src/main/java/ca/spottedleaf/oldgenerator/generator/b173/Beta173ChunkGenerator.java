@@ -9,8 +9,10 @@ import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
 import java.util.ArrayDeque;
+import java.util.List;
 import java.util.Random;
 import java.util.WeakHashMap;
 
@@ -33,7 +35,7 @@ public final class Beta173ChunkGenerator extends ChunkGenerator {
         }
 
         if (ret == null) {
-            ret = new ChunkProviderGenerate173(world, world.getSeed());
+            ret = new ChunkProviderGenerate173(world, world.getSeed(), world.getPopulators());
         }
 
         return ret;
@@ -82,7 +84,6 @@ public final class Beta173ChunkGenerator extends ChunkGenerator {
             this.cachedSkyGenerators.get(world).addLast(generator);
         }
     }
-
 
     @Override
     public boolean isParallelCapable() {
@@ -152,7 +153,7 @@ public final class Beta173ChunkGenerator extends ChunkGenerator {
                 if (!this.isSkyLands) {
                     ChunkProviderGenerate173 generator = this.getOverworldGenerator(world);
                     try {
-                        generator.populateChunk(new WorldBlockAccess(world), chunk.getX(), chunk.getZ()); // TODO limited access
+                        generator.populateChunk(new WorldBlockAccess(world), chunk.getX(), chunk.getZ());
                     } finally {
                         this.returnOverworldGenerator(generator, world);
                     }
@@ -160,7 +161,9 @@ public final class Beta173ChunkGenerator extends ChunkGenerator {
                 } else {
                     ChunkProviderSky173 generator = this.getSkyGenerator(world);
                     try {
-                        generator.populateChunk(new WorldBlockAccess(world), chunk.getX(), chunk.getZ()); // TODO limited access
+                        generator.populateChunk(new WorldBlockAccess(world), chunk.getX(), chunk.getZ()); // TODO
+                                                                                                          // limited
+                                                                                                          // access
                     } finally {
                         this.returnSkyGenerator(generator, world);
                     }
@@ -170,7 +173,8 @@ public final class Beta173ChunkGenerator extends ChunkGenerator {
             case NETHER: {
                 ChunkProviderHell173 generator = this.getNetherGenerator(world);
                 try {
-                    generator.populateChunk(new WorldBlockAccess(world), chunk.getX(), chunk.getZ()); // TODO limited access
+                    generator.populateChunk(new WorldBlockAccess(world), chunk.getX(), chunk.getZ()); // TODO limited
+                                                                                                      // access
                 } finally {
                     this.returnNetherGenerator(generator, world);
                 }
@@ -201,7 +205,8 @@ public final class Beta173ChunkGenerator extends ChunkGenerator {
     public boolean canSpawn(World world, int x, int z) {
         if (world.getEnvironment() == World.Environment.NORMAL) {
             int y;
-            for (y = 63; !world.getBlockAt(x, y + 1, z).isEmpty(); ++y) {}
+            for (y = 63; !world.getBlockAt(x, y + 1, z).isEmpty(); ++y) {
+            }
 
             if (!this.isSkyLands) {
                 return world.getBlockAt(x, y, z).getType() == Material.SAND;
@@ -211,7 +216,8 @@ public final class Beta173ChunkGenerator extends ChunkGenerator {
             }
         } else { // assume nether
             int y;
-            for(y = 63; !world.getBlockAt(x, y + 1, z).isEmpty(); ++y) {}
+            for (y = 63; !world.getBlockAt(x, y + 1, z).isEmpty(); ++y) {
+            }
 
             Material type = world.getBlockAt(x, y, z).getType();
             return type != Material.BEDROCK && (type != Material.AIR && LegacyUtil173.Block_o(type));

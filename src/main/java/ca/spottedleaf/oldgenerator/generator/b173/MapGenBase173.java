@@ -8,7 +8,8 @@ public class MapGenBase173 {
     protected final int offset = 8;
     protected final Random random = new Random();
 
-    public MapGenBase173() {}
+    public MapGenBase173() {
+    }
 
     public void generate(World world, int cx, int cz, ChunkGenerator.ChunkData chunkData) {
         int k = this.offset;
@@ -25,6 +26,7 @@ public class MapGenBase173 {
         }
     }
 
-    protected void generate(World world, int i, int j, int k, int l, ChunkGenerator.ChunkData chunkData) {}
+    protected void generate(World world, int i, int j, int k, int l, ChunkGenerator.ChunkData chunkData) {
+    }
 
 }
